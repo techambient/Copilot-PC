@@ -9,4 +9,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Interactive SSH Window
-        uses: csexton/debugger-action@v2
+        uses: lhotari/action-upterm@v1

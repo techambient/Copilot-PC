@@ -5,8 +5,19 @@ jobs:
   test-env:
     runs-on: macos-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - name: Setup SSH Password
+        run: |
+          # Sets 'macpassword' as the password for the runner user
+          echo "runner:macpassword" | sudo chpasswd
+          
+          # Enable native macOS Remote Login (SSH)
+          sudo systemsetup -setremotelogin on
 
-      - name: Setup Interactive SSH Window
-        uses: lhotari/action-upterm@v1
+      - name: Start Tunnel
+        run: |
+          # Download and install the official ngrok binary directly
+          curl -s https://equinox.io -o ngrok.zip
+          unzip ngrok.zip
+          
+          # Start a completely free public TCP tunnel on the SSH port
+          ./ngrok tcp 22 --log=stdout

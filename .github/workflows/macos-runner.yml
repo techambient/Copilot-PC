@@ -1,5 +1,5 @@
 name: Interactive macOS Session
-on: workflow_dispatch  # Allows you to trigger it manually
+on: workflow_dispatch
 
 jobs:
   test-env:
@@ -9,4 +9,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Interactive SSH Window
-        uses: mxschmitt/action-tmate@v3  # Generates an active SSH connection link
+        uses: csexton/debugger-action@v2

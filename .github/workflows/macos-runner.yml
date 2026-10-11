@@ -1,16 +1,12 @@
-name: macOS Runner
-
-# Controls when the workflow will run
-on:
-  workflow_dispatch:
+name: Interactive macOS Session
+on: workflow_dispatch  # Allows you to trigger it manually
 
 jobs:
-  test:
-    # The type of runner that the job will run on
-    # See https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories
-    runs-on: macos-14
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+  test-env:
+    runs-on: macos-latest
     steps:
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Interactive SSH Window
+        uses: mxschmitt/action-tmate@v3  # Generates an active SSH connection link
